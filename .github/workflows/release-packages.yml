@@ -13,7 +13,6 @@ jobs:
           - aarch64_cortex-a53
         branch:
           - openwrt-25.12
-        exclude:
     steps:
       - name: checkout
         uses: actions/checkout@v6
