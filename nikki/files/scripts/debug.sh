@@ -1,15 +1,11 @@
 #!/bin/sh
-
 . "$IPKG_INSTROOT/etc/nikki/scripts/include.sh"
-
 enabled=`uci get nikki.config.enabled`
-
 if [ "$enabled" == "0" ]; then
 	uci set nikki.config.enabled=1
 	uci commit nikki
 	/etc/init.d/nikki restart
 fi
-
 echo \
 "
 # Nikki Debug Info
@@ -116,7 +112,6 @@ print(result);
 `
 ucode -S -e '
 import { popen } from "fs";
-
 function desensitize_proxies(proxies) {
 	for (let x in proxies) {
 		if (exists(x, "server")) {
@@ -157,7 +152,6 @@ function desensitize_proxies(proxies) {
 		}
 	}
 }
-
 function desensitize_profile() {
 	let profile = {};
 	const process = popen("yq -M -p yaml -o json /etc/nikki/run/config.yaml");
@@ -203,7 +197,6 @@ TPROXY:
 `
 ip route list table "$(uci get nikki.routing.tproxy_route_table)"
 `
-
 TUN: 
 `
 ip route list table "$(uci get nikki.routing.tun_route_table)"
@@ -221,7 +214,6 @@ TPROXY:
 `
 ip -6 route list table "$(uci get nikki.routing.tproxy_route_table)"
 `
-
 TUN: 
 `
 ip -6 route list table "$(uci get nikki.routing.tun_route_table)"
@@ -240,7 +232,6 @@ nft list table inet nikki
 `
 \`\`\`
 "
-
 if [ "$enabled" == "0" ]; then
 	uci set nikki.config.enabled=0
 	uci commit nikki
