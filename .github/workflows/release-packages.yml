@@ -16,16 +16,6 @@ jobs:
         branch:
           - openwrt-25.12
         exclude:
-          - arch: mips_4kec
-            branch: openwrt-25.12
-          - arch: mips_4kec
-            branch: SNAPSHOT
-          - arch: riscv64_riscv64
-            branch: openwrt-25.12
-          - arch: riscv64_riscv64
-            branch: SNAPSHOT
-          - arch: riscv64_generic
-            branch: openwrt-24.10
     steps:
       - name: checkout
         uses: actions/checkout@v6
