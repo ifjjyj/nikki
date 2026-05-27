@@ -1,16 +1,12 @@
 #!/bin/sh
-
 # Nikki's feed
-
 # check env
 if [[ ! -x "/bin/opkg" && ! -x "/usr/bin/apk" || ! -x "/sbin/fw4" ]]; then
 	echo "only supports OpenWrt build with firewall4!"
 	exit 1
 fi
-
 # include openwrt_release
 . /etc/openwrt_release
-
 # get branch/arch
 arch="$DISTRIB_ARCH"
 branch=
@@ -29,11 +25,9 @@ case "$DISTRIB_RELEASE" in
 		exit 1
 		;;
 esac
-
 # feed url
-repository_url="https://nikkinikki.pages.dev"
+repository_url="https://nkki.pages.dev"
 feed_url="$repository_url/$branch/$arch/nikki"
-
 if [ -x "/bin/opkg" ]; then
 	# add key
 	echo "add key"
@@ -64,5 +58,4 @@ elif [ -x "/usr/bin/apk" ]; then
 	echo "update feeds"
 	apk update
 fi
-
 echo "success"
