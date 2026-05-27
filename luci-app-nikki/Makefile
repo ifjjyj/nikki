@@ -1,10 +1,6 @@
 include $(TOPDIR)/rules.mk
-
 PKG_VERSION:=1.27.0
-
 LUCI_TITLE:=LuCI Support for nikki
 LUCI_DEPENDS:=+luci-base +nikki
-
 include $(TOPDIR)/feeds/luci/luci.mk
-
-# call BuildPackage - OpenWrt buildroot signature
+call BuildPackage - OpenWrt buildroot signature
