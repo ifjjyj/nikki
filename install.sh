@@ -1,16 +1,12 @@
 #!/bin/sh
-
 # Nikki's installer
-
 # check env
 if [[ ! -x "/bin/opkg" && ! -x "/usr/bin/apk" || ! -x "/sbin/fw4" ]]; then
 	echo "only supports OpenWrt build with firewall4!"
 	exit 1
 fi
-
 # include openwrt_release
 . /etc/openwrt_release
-
 # get branch/arch
 arch="$DISTRIB_ARCH"
 branch=
@@ -29,11 +25,9 @@ case "$DISTRIB_RELEASE" in
 		exit 1
 		;;
 esac
-
 # feed url
-repository_url="https://nikkinikki.pages.dev"
+repository_url="https://nkki.pages.dev"
 feed_url="$repository_url/$branch/$arch/nikki"
-
 if [ -x "/bin/opkg" ]; then
 	# update feeds
 	echo "update feeds"
@@ -54,7 +48,6 @@ if [ -x "/bin/opkg" ]; then
 		lang_version=$(jsonfilter -i nikki.version -e "@['packages']['luci-i18n-nikki-${lang}']")
 		opkg install "$feed_url/luci-i18n-nikki-${lang}_${lang_version}_all.ipk"
 	done
-	
 	rm -f nikki.version
 elif [ -x "/usr/bin/apk" ]; then
 	# update feeds
@@ -70,5 +63,4 @@ elif [ -x "/usr/bin/apk" ]; then
 		apk add --allow-untrusted -X $feed_url/packages.adb "luci-i18n-nikki-${lang}"
 	done
 fi
-
 echo "success" 
