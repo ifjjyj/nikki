@@ -1,8 +1,6 @@
 name: release-packages
 on:
   workflow_dispatch:
-  push:
-    tags:
 jobs:
   release:
     name: ${{ matrix.arch }}-${{ matrix.branch }} release
