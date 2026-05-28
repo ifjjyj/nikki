@@ -28,7 +28,6 @@ define Package/mihomo-alpha
   URL:=https://wiki.metacubex.one
   DEPENDS:=$(GO_ARCH_DEPENDS) +ca-bundle +ip-full +kmod-inet-diag +kmod-tun
   PROVIDES:=mihomo
-  CONFLICTS:=mihomo-meta
   VARIANT:=alpha
   ALTERNATIVES:=\
     300:/usr/bin/mihomo:/usr/libexec/mihomo
