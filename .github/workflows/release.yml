@@ -36,9 +36,12 @@ jobs:
           ARCH: ${{ matrix.arch }}-${{ matrix.branch }}
           FEEDNAME: nikki
           PACKAGES: mihomo-alpha mihomo-meta nikki luci-app-nikki
+          INDEX: 1
+          KEY_BUILD: ${{ secrets.KEY_BUILD }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           NO_REFRESH_CHECK: true
           V: sc
-          GOPATH: "${{ github.workspace }}/gopath"   # ← 加这两行
+          GOPATH: "${{ github.workspace }}/gopath"
           GOCACHE: "${{ github.workspace }}/gocache"
       - name: compress
         run: |
