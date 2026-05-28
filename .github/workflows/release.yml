@@ -19,14 +19,14 @@ jobs:
         branch:
           - openwrt-25.12
     steps:
-      - name: Cache Go modules
+      - name: Cache Go
         uses: actions/cache@v4
         with:
-          path: |
-            ${{ github.workspace }}/gopath
-            ${{ github.workspace }}/gocache
-          key: go-${{ matrix.arch }}-${{ matrix.branch }}-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
+         path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+         key: go-${{ matrix.arch }}-${{ matrix.branch }}-${{ hashFiles('**/go.sum') }}
+         restore-keys: |
             go-${{ matrix.arch }}-${{ matrix.branch }}-
       - name: checkout
         uses: actions/checkout@v6
