@@ -35,10 +35,7 @@ jobs:
         env:
           ARCH: ${{ matrix.arch }}-${{ matrix.branch }}
           FEEDNAME: nikki
-          PACKAGES: mihomo-meta nikki luci-app-nikki
-          INDEX: 1
-          KEY_BUILD: ${{ secrets.KEY_BUILD }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          PACKAGES: mihomo-alpha mihomo-meta nikki luci-app-nikki
           NO_REFRESH_CHECK: true
           V: sc
           GOPATH: "${{ github.workspace }}/gopath"   # ← 加这两行
