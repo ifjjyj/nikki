@@ -1,6 +1,11 @@
 name: release-packages
 on:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: '请输入需要发布的版本号 (例如 v1.0.1)'
+        required: true
+        default: 'v1.0.1'
 jobs:
   release:
     name: ${{ matrix.arch }}-${{ matrix.branch }} release
@@ -21,7 +26,7 @@ jobs:
         env:
           ARCH: ${{ matrix.arch }}-${{ matrix.branch }}
           FEEDNAME: nikki
-          PACKAGES: mihomo-alpha mihomo-meta nikki luci-app-nikki
+          PACKAGES: mihomo-meta nikki luci-app-nikki
           INDEX: 1
           KEY_BUILD: ${{ secrets.KEY_BUILD }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
