@@ -19,6 +19,15 @@ jobs:
         branch:
           - openwrt-25.12
     steps:
+      - name: Cache Go modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ github.workspace }}/gopath
+            ${{ github.workspace }}/gocache
+          key: go-${{ matrix.arch }}-${{ matrix.branch }}-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            go-${{ matrix.arch }}-${{ matrix.branch }}-
       - name: checkout
         uses: actions/checkout@v6
       - name: build
@@ -32,6 +41,8 @@ jobs:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           NO_REFRESH_CHECK: true
           V: sc
+          GOPATH: "${{ github.workspace }}/gopath"   # ← 加这两行
+          GOCACHE: "${{ github.workspace }}/gocache"
       - name: compress
         run: |
           tar -c -z -f nikki_${{ matrix.arch }}-${{ matrix.branch }}.tar.gz -C bin/packages/${{ matrix.arch }}/nikki .
