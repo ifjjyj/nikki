@@ -43,6 +43,9 @@ jobs:
           V: sc
           GOPATH: "${{ github.workspace }}/gopath"
           GOCACHE: "${{ github.workspace }}/gocache"
+      - name: fix curl recursive dep
+        run: |
+          sed -i '/depends on LIBCURL_LDAP/d' feeds/packages/net/curl/Config.in || true
       - name: compress
         run: |
           tar -c -z -f nikki_${{ matrix.arch }}-${{ matrix.branch }}.tar.gz -C bin/packages/${{ matrix.arch }}/nikki .
