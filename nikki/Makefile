@@ -1,6 +1,6 @@
 include $(TOPDIR)/rules.mk
 PKG_NAME:=nikki
-PKG_VERSION:=2026.05.27
+PKG_VERSION:=2026.05.30
 PKG_RELEASE:=1
 PKG_LICENSE:=GPL3.0+
 PKG_MAINTAINER:=Joseph Mory <ifjjyj@gmail.com>
