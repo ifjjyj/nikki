@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       run_id:
-        description: '已完成编译的工作流 Run ID（地址栏 runs/ 后面的数字）'
+        description: '45949436604'
         required: true
         type: string
       project_name:
